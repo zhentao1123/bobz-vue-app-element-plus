@@ -50,7 +50,7 @@ export const constantRouterMap = [
   },
 ];
 
-export  dynamicMenuList = {
+export const dynamicMenuList = {
 
 }
 
