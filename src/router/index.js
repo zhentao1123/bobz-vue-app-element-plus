@@ -50,6 +50,10 @@ export const constantRouterMap = [
   },
 ];
 
+export  dynamicMenuList = {
+
+}
+
 const router = createRouter({
   history: createWebHistory(),
   // base: process.env.BASE_URL,
