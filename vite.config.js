@@ -3,6 +3,12 @@ import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import babel from 'vite-babel-plugin';
 
+//需要高版本的nodejs，v12会出错
+// import ElementPlus from 'unplugin-element-plus/vite' 
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 /**
  *
  * 所有配置详见：https://www.vitejs.net/config/#mode
@@ -11,7 +17,20 @@ export default defineConfig({
   /**
    * 插件配置
    */
-  plugins: [vue(), babel()],
+  plugins: [
+    vue(), 
+    babel(),
+    // ElementPlus({
+    //   importStyle: 'sass',
+    //   useSource: true
+    // }),
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    })
+  ],
 
   resolve: {
     /**
@@ -138,7 +157,7 @@ export default defineConfig({
 				'@import "@/assets/scss/globalVariable1.scss";@import "@/assets/scss/globalVariable2.scss";'
 				这种格式
 				 */
-				additionalData: '@import "@/styles/comm.scss";'
+				// additionalData: '@import "@/styles/comm.scss";'
       }
     }
   }

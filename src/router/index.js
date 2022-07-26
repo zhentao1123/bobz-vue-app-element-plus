@@ -9,6 +9,11 @@ export const constantRouterMap = [
     hidden: true,
   },
   {
+    path: '/el-config',
+    component: () => import('@/views/demo/ELConfig.vue'),
+    hidden: true,
+  },
+  {
     path: '/login',
     component: () => import('@/views/login/index.vue'),
     hidden: true,
