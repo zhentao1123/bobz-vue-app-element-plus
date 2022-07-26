@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 100%;
-  height: 100%;
+  height:100%; min-height: 100%;
   
   display: -webkit-flex; /* Safari */
   -webkit-justify-content: space-around; /* Safari 6.1+ */

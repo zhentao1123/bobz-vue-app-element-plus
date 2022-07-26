@@ -1,21 +1,18 @@
 <template>
-  <div>
+  <el-container class="container">
+    <!-- 头部区域 -->
+    <el-header class="header">
+      Header
+    </el-header>
     <el-container>
-      <!-- 头部区域 -->
-      <el-header class="header">
-        Header
-      </el-header>
-      <el-container>
-        <!-- 左侧区域 -->
-        <el-aside width="200px" class="aside">
-          <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-            <el-radio-button :label="false">expand</el-radio-button>
-            <el-radio-button :label="true">collapse</el-radio-button>
-          </el-radio-group>
+      <!-- 左侧区域 -->
+      <el-aside :width="menuWidth" class="aside">
+        <el-row justify="center" style="flex-grow:1;">
           <el-menu
-            default-active="2"
+            default-active="1"
             class="el-menu-vertical"
             :collapse="isCollapse"
+            :collapse-transition="isTransition"
             @open="handleOpen"
             @close="handleClose"
           >
@@ -50,14 +47,17 @@
               <template #title>Navigator Four</template>
             </el-menu-item>
           </el-menu>
-        </el-aside>
-        <!-- 内容区域 -->
-        <el-main class="main">
-          main
-        </el-main>
-      </el-container>
+        </el-row>
+        <el-row justify="center" style="flex-grow:0;">
+          <el-switch v-model="isCollapse" />
+        </el-row>
+      </el-aside>
+      <!-- 内容区域 -->
+      <el-main class="main">
+        <router-view/>
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
 <script>
@@ -72,7 +72,8 @@ export default {
   components: {},
   data() {
     return {
-      isCollapse: true
+      isCollapse: true,
+      isTransition: false
     };
   },
   methods: {
@@ -82,24 +83,44 @@ export default {
     handleClose(key='', keyPath=[]){
       console.log(key, keyPath);
     }
+  },
+  computed: {
+    menuWidth(){
+      let self = this;
+      return self.isCollapse ? '70px' : '200px';
+    }
   }
 };
 </script>
 
-<style>
-.header{
-  background: orange;
-}
-.aside{
-  background: lightblue;
-  height: 100%;
-}
-.main{
+<style lang="scss" scoped>
+$menu-bg: lightblue;
+.container{
   width: 100%;
-  height: 100%;
+  min-height: 100%; height: 100%;
+  .header{
+    background: orange;
+  } 
+  .aside{
+    height: 100%;
+    background-color: $menu-bg;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    .el-menu-vertical:not(.el-menu--collapse) {
+      width: 200px;
+      height: 100%;
+      background-color: $menu-bg;
+    }
+    .el-menu--collapse{
+      width: 70px;
+      background-color: $menu-bg;
+    }
+  }
+  .main{
+    width: 100%;
+    height: 100%;
+  }
 }
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
+
+
 </style>
