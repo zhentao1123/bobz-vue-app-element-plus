@@ -11,7 +11,7 @@
           <el-menu
             default-active="1"
             class="el-menu-vertical"
-            :collapse="isCollapse"
+            :collapse="!isUnfolded"
             :collapse-transition="isTransition"
             @open="handleOpen"
             @close="handleClose"
@@ -52,7 +52,7 @@
           </el-menu>
         </el-row>
         <el-row justify="center" style="flex-grow:0;">
-          <el-switch v-model="isCollapse" />
+          <el-switch v-model="isUnfolded" />
         </el-row>
       </el-aside>
       <!-- 内容区域 -->
@@ -79,7 +79,8 @@ export default {
   },
   data() {
     return {
-      isCollapse: true,
+      isUnfolded: true,
+      // isCollapse: true,
       isTransition: false,
       menuList: []
     };
@@ -104,7 +105,7 @@ export default {
   computed: {
     menuWidth(){
       let self = this;
-      return self.isCollapse ? '70px' : '200px';
+      return self.isUnfolded ? '200px' : '70px';
     }
   }
 };

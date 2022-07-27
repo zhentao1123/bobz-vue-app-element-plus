@@ -8,7 +8,8 @@
     <template v-if="item.children">
       <el-sub-menu :index="idx+''">
         <template #title>
-          <el-icon><location /></el-icon>
+          <el-icon><component :is="item.meta.icon" class="icon"></component></el-icon>
+          <!-- <el-icon><location /></el-icon> -->
           <span>{{item.meta.title}}</span>
         </template>
         <template v-for="(subItem, subIdx) in item.children" :key="subItem.name">
@@ -16,7 +17,6 @@
           <template v-if="subItem.children">
             <el-sub-menu :index="idx+''+subIdx">
               <template #title>
-                <el-icon><location /></el-icon>
                 <span>{{subItem.meta.title}}</span>
               </template>
               <template v-for="(subItem2, subIdx2) in subItem.children" :key="subItem2.name">
@@ -64,5 +64,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.icon {
+  width: 20px;
+  height: 20px;
+}
 </style>

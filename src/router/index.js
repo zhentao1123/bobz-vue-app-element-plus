@@ -43,7 +43,7 @@ export const dynamicMenuList = [
         path: 'roleList',
         name: 'roleList',
         component: () => import('@/views/admin/role/roleList.vue'),
-        meta: { title: '角色'},
+        meta: { title: '角色列表'},
       },
     ],
   },
