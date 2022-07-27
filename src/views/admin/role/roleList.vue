@@ -6,7 +6,7 @@
 export default {
   data() {
     return {
-      msg: 'role index',
+      msg: 'role list',
     };
   },
 };

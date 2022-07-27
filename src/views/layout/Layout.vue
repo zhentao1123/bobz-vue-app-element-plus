@@ -16,6 +16,8 @@
             @open="handleOpen"
             @close="handleClose"
           >
+            <i-menu :menuList='menuList'/>
+            <!--
             <el-sub-menu index="1">
               <template #title>
                 <el-icon><location /></el-icon>
@@ -46,6 +48,7 @@
               <el-icon><setting /></el-icon>
               <template #title>Navigator Four</template>
             </el-menu-item>
+            -->
           </el-menu>
         </el-row>
         <el-row justify="center" style="flex-grow:0;">
@@ -66,15 +69,24 @@ import {
   Menu,
   Location,
   Setting,
-} from '@element-plus/icons-vue'
+} from '@element-plus/icons-vue';
+import { dynamicMenuList } from '@/router/index';
+import IMenu from '@/components/IMenu.vue';
 
 export default {
-  components: {},
+  components: {
+    IMenu
+  },
   data() {
     return {
       isCollapse: true,
-      isTransition: false
+      isTransition: false,
+      menuList: []
     };
+  },
+  created(){
+    let self = this;
+    self.loadMenu();
   },
   methods: {
     handleOpen(key='', keyPath=[]){
@@ -82,6 +94,11 @@ export default {
     },
     handleClose(key='', keyPath=[]){
       console.log(key, keyPath);
+    },
+    loadMenu(){
+      let self = this;
+      self.menuList = dynamicMenuList;
+      // console.log('Layout menuList ====>', JSON.stringify(self.menuList));
     }
   },
   computed: {
