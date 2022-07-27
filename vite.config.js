@@ -32,6 +32,16 @@ export default defineConfig({
     })
   ],
 
+  /**
+   * 用于加载 .env 文件的目录。可以是一个绝对路径，也可以是相对于项目根的路径。默认：root
+   */
+  envDir: './env', //resolve(__dirname, 'env'),
+
+  /**
+   * 以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。默认：VITE_
+   */
+  envPrefix: ['APP_'], 
+
   resolve: {
     /**
      * 别名配置
